@@ -1,0 +1,153 @@
+<html>
+<head>
+    <title>----------------------------------------------------------------------------------</title>
+    <link rel="icon" id="shortcutIcon" type="image/x-icon" href="arrow.png">
+    <link href="/Content/site.css" rel="stylesheet" />
+</head>
+<body style="background-color: black; color: whitesmoke;">
+    <h1>Tab Divider</h1>
+
+    <table cellspacing="0" cellpadding="10">
+        <tr>
+            <td>
+                Custom Title
+            </td>
+            <td>
+                <input id="CustomTitle" style="width:200px;" />
+            </td>
+            <td>
+                Icon
+            </td>
+            <td>
+                <select id="Icon" style="width:100px;">
+                    <option value="blue">blue</option>
+                    <option value="green">green</option>
+                    <option value="purple">purple</option>
+                    <option value="red">red</option>
+                    <option value="white">white</option>
+                    <option value="yellow">yellow</option>
+                </select>
+            </td>
+            <td>
+                Line Style
+            </td>
+            <td>
+                <select id="LineStyle" style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;  width:100px;">
+                    <option value="style0">No Line</option>
+                    <option value="style1">---------------</option>
+                    <option value="style2">=-=-=-=-=-=-=-=</option>
+                    <option value="style3">:::::::::::::::</option>
+                    <option value="style4">^-^-^-^-^-^-^-^</option>
+                    <option value="style5">>>>>>>>>>>>>>>></option>
+                </select>
+            </td>
+            <td>
+                <button id="GoButton" title="Update">Update</button>
+            </td>
+            <td>
+                <button id="NewButton" title="New">New Tab</button>
+            </td>
+        </tr>
+    </table>
+
+
+   
+
+    <script src="/Scripts/jquery-3.3.1.js"></script>
+
+    <script src="/Scripts/bootstrap.js"></script>
+
+
+    <script language="javascript">
+
+        $(GoButton).click(function () {
+            window.location.href = GetUrl();
+        });
+
+        $(NewButton).click(function () {
+            var url = GetUrl();
+            window.open(url, '_blank');
+        });
+
+        $('#CustomTitle').on('keydown', function (e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                $('#GoButton').click();
+            }
+        });
+
+        function GetUrl() {
+            var customTitle = $('#CustomTitle').val();
+            var icon = $('#Icon').val();
+            var lineStyle = $('#LineStyle').val();
+            return 'Divider.htm?customtitle=' + encodeURIComponent(customTitle) + '&icon=' + encodeURIComponent(icon) + '&linestyle=' + encodeURIComponent(lineStyle);
+        }
+
+        function GetLineStyle(name) {
+            switch (name) {
+                case "style1":
+                    return "------------------------------------------------------------------------------------------";
+                case "style2":
+                    return "=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="; 
+                case "style3":
+                    return ":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::"; 
+                case "style4":
+                    return "^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^";
+                case "style5":
+                    return ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+                case "style0":
+                    return "";
+                default:
+                    return "";
+            }
+        }
+
+        //function SetUrl() {
+        //    var customTitle = $('#CustomTitle').val();
+        //    var icon = $('#Icon').val();
+        //    var url = 'Divider.htm?customtitle=' + encodeURIComponent(customTitle) + '&icon=' + encodeURIComponent(icon);
+        //    window.location.href = url;
+        //}
+
+        $(document).ready(function () {
+
+            $('#CustomTitle').focus();
+
+            if (getParameterByName('customtitle') != null) {
+                
+                document.title = getParameterByName('customtitle') + " " + GetLineStyle(getParameterByName('linestyle'));
+
+                if (document.title == "") {
+                    document.title = "\u200E";
+                }
+                
+
+                //alert(getParameterByName('icon'));
+                $(CustomTitle).val(getParameterByName('customtitle'));
+                $(Icon).val(getParameterByName('icon'));
+                $(LineStyle).val(getParameterByName('linestyle'));
+
+                var iconValue = $('#Icon').val();
+                $('#shortcutIcon').attr('href', 'icon-' + iconValue + '.png');
+
+            } else {
+                document.title = "---------------------------------------------";
+            }
+        });
+
+        $(window).resize(function () {
+
+        });
+
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+    </script>
+
+</body>
+</html>

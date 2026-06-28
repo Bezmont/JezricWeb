@@ -1,0 +1,102 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Jezric</title>
+	<!--<link href="/Content/bootstrap.css" rel="stylesheet" />-->
+	<link href="/Content/site.css" rel="stylesheet" />
+	<link rel="shortcut icon" type="image/x-icon" href="/images/Icon_32.ico" />
+	<script src="/Scripts/modernizr-2.8.3.js"></script>
+
+	<script language="javascript">
+
+
+
+	</script>
+</head>
+<body>
+
+    <div>
+
+        <table width="100%" cellspacing="0" cellpadding="0">
+            <tr>
+                <td>
+                    <center>
+                        <img src="../Images/jezric.logo.chrome.png" id="titleGraphic" width="300" />
+
+                        <table id="mainContentTable" style="width:300px">
+                            <tr>
+                                <td valign="top">
+                                    <div id="buttons1" style="width:300px;">
+                                        <img src="Images/header.music.png" width="300" />
+                                        <br />
+                                        <a href="/elevatorfall/" border="0"><div class="MenuItem_Music_ElevatorFall"></div></a>
+                                        <br />
+                                        <a href="/turnerscorner/" border="0"><div class="MenuItem_Music_TurnersCorner"></div></a>
+                                        <br />
+                                        <a href="/hankington/" border="0"><div class="MenuItem_Music_Hankington"></div></a>
+                                    </div>
+                                    <div id="buttons2" style="width:300px;">
+                                        <img src="Images/header.video.png" width="300" />
+                                        <br />
+                                        <a href="https://www.youtube.com/user/TheJezric/videos" border="0" target="_blank"><div class="MenuItem_Video_YouTube"></div></a>
+                                        <br /><br /><br />
+                                        <img src="Images/header.arttech.png" width="300" />
+                                        <br />
+                                        <a href="https://www.instagram.com/thejezric/" border="0" target="_blank"><div class="MenuItem_Arttech_Instagram"></div></a>
+                                        <br />
+                                        <a href="https://www.thingiverse.com/Jezric/designs" border="0" target="_blank"><div class="MenuItem_Arttech_Thingiverse"></div></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </center>
+                </td>
+            </tr>
+        </table>
+
+
+    </div>
+
+
+    <script src="/Scripts/jquery-3.3.1.js"></script>
+
+    <script src="/Scripts/bootstrap.js"></script>
+
+    <script language="javascript">
+
+        $(document).ready(function ()
+        {
+            SetMainTable();
+        });
+
+        $(document).resize(function () {
+            SetMainTable();
+        });
+
+
+        function SetMainTable()
+        {
+            if ($(window).width() >= Number(700))
+            {
+                $(mainContentTable).width(700);
+                $(titleGraphic).width(700);
+                
+
+                $(buttons1).css('float', 'left');
+                $(buttons2).css('float', 'right');
+            }
+            else
+            {
+                $(mainContentTable).width(300);
+
+                $(titleGraphic).attr('src', '../Images/jezric.logo.png')
+            }
+        }
+
+
+    </script>
+</body>
+</html>
