@@ -1,11 +1,11 @@
-﻿body 
+body 
 {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color:#efefef;
     
     background-color:#020100;
 
-    background-image:url(/Images/background.png);
+    background-image:url(../Images/background.png);
     background-position:top center;
     background-repeat:no-repeat;
  
@@ -95,7 +95,7 @@ h3 {
 
 .MenuItem_Music_ElevatorFall 
 {
-    background-image: url("/images/menu.items.music.png");
+    background-image: url("../Images/menu.items.music.png");
     background-position: 0px 0px;
     background-repeat: no-repeat;
     width:300px;
@@ -110,7 +110,7 @@ h3 {
 /*  Turners Corner  */
 
 .MenuItem_Music_TurnersCorner {
-    background-image: url("/images/menu.items.music.png");
+    background-image: url("../Images/menu.items.music.png");
     background-position: 0px -75px;
     background-repeat: no-repeat;
     width: 300px;
@@ -125,7 +125,7 @@ h3 {
 /* Hankington */
 
 .MenuItem_Music_Hankington {
-    background-image: url("/images/menu.items.music.png");
+    background-image: url("../Images/menu.items.music.png");
     background-position: 0px -150px;
     background-repeat: no-repeat;
     width: 300px;
@@ -140,7 +140,7 @@ h3 {
 /* YouTube */
 
 .MenuItem_Video_YouTube {
-    background-image: url("/images/menu.items.video.png");
+    background-image: url("../Images/menu.items.video.png");
     background-position: 0px 0px;
     background-repeat: no-repeat;
     width: 300px;
@@ -155,7 +155,7 @@ h3 {
 /* Thingiverse */
 
 .MenuItem_Arttech_Thingiverse {
-    background-image: url("/images/menu.items.arttech.thingiverse.png");
+    background-image: url("../Images/menu.items.arttech.thingiverse.png");
     background-position: 0px 0px;
     background-repeat: no-repeat;
     width: 300px;
@@ -170,7 +170,7 @@ h3 {
 /* Instagram */
 
 .MenuItem_Arttech_Instagram {
-    background-image: url("/images/menu.items.arttech.instagram.png");
+    background-image: url("../Images/menu.items.arttech.instagram.png");
     background-position: 0px 0px;
     background-repeat: no-repeat;
     width: 300px;
@@ -259,3 +259,5 @@ h3 {
 .iconLinkText a:hover {
     color:white;
 }
+
+
