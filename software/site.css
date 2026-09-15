@@ -5,7 +5,7 @@ body
     
     background-color:#020100;
 
-    background-image:url(../Images/background.png);
+    background-image:url(../images/background.png);
     background-position:top center;
     background-repeat:no-repeat;
  
@@ -95,7 +95,7 @@ h3 {
 
 .MenuItem_Music_ElevatorFall 
 {
-    background-image: url("../Images/menu.items.music.png");
+    background-image: url("../images/menu.items.music.png");
     background-position: 0px 0px;
     background-repeat: no-repeat;
     width:300px;
@@ -110,7 +110,7 @@ h3 {
 /*  Turners Corner  */
 
 .MenuItem_Music_TurnersCorner {
-    background-image: url("../Images/menu.items.music.png");
+    background-image: url("../images/menu.items.music.png");
     background-position: 0px -75px;
     background-repeat: no-repeat;
     width: 300px;
@@ -125,7 +125,7 @@ h3 {
 /* Hankington */
 
 .MenuItem_Music_Hankington {
-    background-image: url("../Images/menu.items.music.png");
+    background-image: url("../images/menu.items.music.png");
     background-position: 0px -150px;
     background-repeat: no-repeat;
     width: 300px;
@@ -140,7 +140,7 @@ h3 {
 /* YouTube */
 
 .MenuItem_Video_YouTube {
-    background-image: url("../Images/menu.items.video.png");
+    background-image: url("../images/menu.items.video.png");
     background-position: 0px 0px;
     background-repeat: no-repeat;
     width: 300px;
@@ -155,7 +155,7 @@ h3 {
 /* Thingiverse */
 
 .MenuItem_Arttech_Thingiverse {
-    background-image: url("../Images/menu.items.arttech.thingiverse.png");
+    background-image: url("../images/menu.items.arttech.thingiverse.png");
     background-position: 0px 0px;
     background-repeat: no-repeat;
     width: 300px;
@@ -170,7 +170,7 @@ h3 {
 /* Instagram */
 
 .MenuItem_Arttech_Instagram {
-    background-image: url("../Images/menu.items.arttech.instagram.png");
+    background-image: url("../images/menu.items.arttech.instagram.png");
     background-position: 0px 0px;
     background-repeat: no-repeat;
     width: 300px;
@@ -258,6 +258,164 @@ h3 {
 
 .iconLinkText a:hover {
     color:white;
+}
+
+/*
+    #####################################################################
+
+    Product Sections
+
+    #####################################################################
+*/
+
+.ProductSection {
+    padding-bottom: 40px;
+    line-height: 1.5;
+}
+
+.ProductSection h2 {
+    font-size: 22pt;
+    font-weight: normal;
+}
+
+.ProductTagline {
+    color: #c8d3dd;
+    padding-bottom: 14px;
+}
+
+.ProductThumb {
+    display: block;
+    cursor: zoom-in;
+}
+
+.ProductThumb img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid grey;
+    box-sizing: border-box;
+}
+
+.ProductThumb:hover img {
+    border-color: #efefef;
+}
+
+.ProductThumbHint {
+    font-size: 9pt;
+    color: #aab6c2;
+    text-align: center;
+    padding-top: 4px;
+}
+
+.ProductFeatures {
+    padding-left: 20px;
+    margin-top: 0px;
+}
+
+.ProductFeatures li {
+    padding-bottom: 6px;
+}
+
+.ProductDownload {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.DownloadButton,
+.DownloadButton:link,
+.DownloadButton:visited {
+    display: inline-block;
+    padding: 10px 28px;
+    background-color: #b44b4b;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16pt;
+    font-variant: small-caps;
+}
+
+.DownloadButton:hover {
+    background-color: #c85e5e;
+    color: white;
+}
+
+.ProductRequirements {
+    font-size: 10pt;
+    color: #c8d3dd;
+    padding-top: 10px;
+}
+
+.ProductRequirements code {
+    font-size: 10pt;
+}
+
+.ProductLinks {
+    padding-top: 8px;
+}
+
+.ProductSectionDivided {
+    border-top: solid 1px Gray;
+    padding-top: 24px;
+}
+
+/* width:0 + min-width:100% keeps long code lines from widening the table; they scroll instead */
+.ProductCode {
+    width: 0;
+    min-width: 100%;
+    margin-bottom: 16px;
+}
+
+.ProductCode pre {
+    margin: 0;
+    padding: 12px 14px;
+    overflow-x: auto;
+    background-color: #1b2733;
+    border: 1px solid grey;
+    color: #d6e2ec;
+    font-size: 9pt;
+    line-height: 1.45;
+    text-align: left;
+}
+
+.AboutSection {
+    border-top: solid 1px Gray;
+    padding-top: 24px;
+    padding-bottom: 40px;
+    line-height: 1.5;
+    color: #c8d3dd;
+}
+
+.AboutSection h2 {
+    color: #efefef;
+    padding-bottom: 6px;
+}
+
+.AboutSection p {
+    margin-top: 0px;
+}
+
+.ImageOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.9);
+    cursor: zoom-out;
+    text-align: center;
+}
+
+.ImageOverlay img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 96%;
+    max-height: 96%;
+    border: 1px solid grey;
 }
 
 

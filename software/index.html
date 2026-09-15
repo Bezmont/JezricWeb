@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jezric Software</title>
+    <link href="site.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="../images/icon_32.ico" />
+</head>
+<!--<body style="">-->
+<body style="background: fixed; background-color: #3d5369; background-image: url(images/jezric-background.png); background-position: top left; background-repeat: no-repeat; ">
+
+    <div id="logodiv" class="MainTable" style="padding-top:20px;">
+        <table width="100%">
+            <tr>
+                <td>
+                    <center>
+
+                        <table id="mainContentTable">
+                            <tr>
+                                <td style="border-top:solid 1px Gray;padding-bottom:30px;">
+
+                                    <center><h1>Jezric Software</h1></center>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="ProductSection" id="plugbrowser">
+
+                                    <h2>PlugBrowser</h2>
+                                    <div class="ProductTagline">A browsable, searchable catalog of every audio plugin (VST) installed on your PC, with a picture of each one's interface. 
+                                        Useful for visually seeing all your plugins at a glance, seeing what plugins are installed on your system and finding the right plugin for your project.</div>
+
+                                    <a href="images/plugbrowser-ss.png" class="ProductThumb" target="_blank" title="Click to enlarge">
+                                        <img src="images/plugbrowser-ss.png" alt="PlugBrowser showing a gallery of plugin screenshots with category filters and a detail pane" />
+                                    </a>
+                                    <div class="ProductThumbHint">Click the screenshot to enlarge</div>
+
+                                    <p>
+                                        PlugBrowser scans your VST3 and VST2 folders, without actually loading a single plugin, then opens each
+                                        VST3 plugin in a separate, sandboxed process to photograph its editor. A plugin that hangs or crashes only costs one
+                                        entry, never the app, and copy-protected titles that stall other hosts load and capture normally.
+                                    </p>
+
+                                    <ul class="ProductFeatures">
+                                        <li><b>Gallery view</b> with each plugin shown at its true proportions, plus a full-size view of any screenshot.</li>
+                                        <li><b>Filter and search</b> by format, effect or instrument, vendor, and category (Delay, Reverb, Synth and more), with counts that update as you narrow the results.</li>
+                                        <li><b>Copy Title</b> to clipboard with one click or by standard ctrl+C. Useful for pasting into plugin search box in your DAW.</li>
+                                        <li><b>Duplicate finder</b> that spots plugins installed as both VST2 and VST3 and shows how much disk space the redundant copies use.</li>
+                                        <li><b>Reload &amp; recapture</b> for plugins whose first screenshot caught a registration or trial prompt.</li>
+                                        <li>Your filters, chosen vendor and window layout are remembered between runs.</li>
+                                    </ul>
+
+                                    <div class="ProductDownload">
+                                        <a href="https://github.com/Bezmont/PlugBrowser/releases/latest" class="DownloadButton" target="_blank">Download PlugBrowser</a>
+                                        <div class="ProductRequirements">
+                                            Free for Windows 10 or 11 (64-bit). Unzip anywhere and run <code>PlugBrowser.App.exe</code>, with nothing else to install.
+                                            The download isn't code-signed yet, so if Windows SmartScreen warns you, choose <i>More info</i> &rarr; <i>Run anyway</i>.
+                                        </div>
+                                        <div class="ProductLinks">
+                                            <a href="https://github.com/Bezmont/PlugBrowser/releases" target="_blank">All releases</a>
+                                            &middot;
+                                            <a href="https://github.com/Bezmont/PlugBrowser" target="_blank">Source code (GPLv3)</a>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="netplughost">
+
+                                    <h2>NetPlugHost</h2>
+                                    <div class="ProductTagline">A VST3 plugin host library for .NET developers on Windows. It's the engine <a href="#plugbrowser">PlugBrowser</a> relies on to load plugins and open their editors.</div>
+
+                                    <p>
+                                        NetPlugHost wraps the Steinberg VST3 SDK in a small native DLL with a simple, flat C interface, and puts a C# library
+                                        of safe, disposable types on top. A .NET application can load VST3 plugins, run audio through them and show their
+                                        editors without touching C++ or the SDK's COM-style interfaces.
+                                    </p>
+
+                                    <ul class="ProductFeatures">
+                                        <li><b>Load and list plugins</b>: open a <code>.vst3</code> bundle and see the name, vendor, category and version of every effect and instrument inside.</li>
+                                        <li><b>Process audio</b> in 32-bit float, mono or stereo. The host negotiates the channel layout and never silently substitutes a different one.</li>
+                                        <li><b>Parameters</b>: list them with their names, units and defaults, and get or set values, even from the UI thread while audio is running.</li>
+                                        <li><b>State</b>: save and restore a plugin's complete settings.</li>
+                                        <li><b>Editors</b>: show a plugin's own interface inside any window you supply, including editors that resize themselves.</li>
+                                        <li><b>Proven on real plugins</b> from Native Instruments, Plugin Alliance, Arturia and others. PlugBrowser uses it to open the editors of nearly two hundred commercial plugins.</li>
+                                    </ul>
+
+                                    <div class="ProductCode">
+<pre>using NetPlugHost;
+
+using var module = Vst3Module.Load(@"C:\Program Files\Common Files\VST3\Some Plugin.vst3");
+
+foreach (var info in module.GetClasses())
+    Console.WriteLine($"{info.Name} by {info.Vendor} ({info.Category})");
+
+using var plugin = module.CreatePlugin(classIndex: 0);
+plugin.Setup(sampleRate: 48000, maxBlockSize: 512, inputChannels: 2, outputChannels: 2);
+plugin.SetActive(true);</pre>
+                                    </div>
+
+                                    <div class="ProductDownload">
+                                        <a href="https://github.com/Bezmont/NetPlugHost" class="DownloadButton" target="_blank">View on GitHub</a>
+                                        <div class="ProductRequirements">
+                                            Free and open source for Windows x64 and .NET 9. Build it from source with Visual Studio 2022 (with the C++ desktop workload) and the .NET 9 SDK.
+                                            MIDI input isn't supported yet, so instruments load and show their editors but can't be played.
+                                        </div>
+                                        <div class="ProductLinks">
+                                            <a href="https://github.com/Bezmont/NetPlugHost#building" target="_blank">Build instructions</a>
+                                            &middot;
+                                            <a href="https://github.com/Bezmont/NetPlugHost#using-it-from-net" target="_blank">Using it from .NET</a>
+                                            &middot;
+                                            <a href="https://github.com/Bezmont/NetPlugHost#license" target="_blank">License (GPLv3)</a>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="AboutSection">
+
+                                    <h2>About These Projects</h2>
+
+                                    <p>
+                                        The software on this page is developed with the help of AI coding agents. The agents write much of the code, but
+                                        none of these projects start or end with them: each one goes through extensive design work by a human, deciding
+                                        what it should do, how it should look and behave, and how it should handle the hard cases, then steering and
+                                        refining the result until it works the way it was meant to.
+                                    </p>
+
+                                    <p>
+                                        Because so much of the code is written with AI help, it only feels right to share it freely. That's why every
+                                        project here is open source and free to use. The full source code is on
+                                        <a href="https://github.com/Bezmont" target="_blank">GitHub</a>, where you can read it, build it yourself,
+                                        report a problem or suggest an improvement.
+                                    </p>
+
+                                </td>
+                            </tr>
+                        </table>
+
+                    </center>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div id="imageOverlay" class="ImageOverlay" title="Click to close">
+        <img id="imageOverlayImg" alt="" />
+    </div>
+
+
+    <script src="../scripts/jquery-3.3.1.js"></script>
+
+    <script src="../scripts/bootstrap.js"></script>
+
+    <script language="javascript">
+
+
+            $(document).ready(function () {
+                SetMainTable();
+
+                $('.ProductThumb').click(function (e) {
+                    e.preventDefault();
+                    $('#imageOverlayImg').attr('src', $(this).attr('href')).attr('alt', $(this).find('img').attr('alt'));
+                    $('#imageOverlay').fadeIn(150);
+                });
+
+                $('#imageOverlay').click(function () {
+                    $(this).fadeOut(150);
+                });
+
+                $(document).keydown(function (e) {
+                    if (e.key === 'Escape' || e.keyCode === 27) {
+                        $('#imageOverlay').fadeOut(150);
+                    }
+                });
+            });
+
+            $(window).resize(function () {
+                SetMainTable();
+            });
+
+
+            function SetMainTable()
+            {
+                if ($(window).width() >= Number(800))
+                {
+                    $(mainContentTable).width(750);
+                }
+                else
+                {
+                    $(mainContentTable).width(300);
+                }
+            }
+
+    </script>
+
+</body>
+</html>
+
