@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talea Manual - Jezric Software</title>
+    <link href="../site.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../images/icon_32.ico" />
+    <style>
+        /* Manual-only additions to site.css */
+        .ManualToc {
+            columns: 2;
+            column-gap: 30px;
+            padding-left: 20px;
+            margin-top: 0px;
+        }
+
+        .ManualToc li {
+            padding-bottom: 4px;
+            break-inside: avoid;
+        }
+
+        .ProductSection h3 {
+            padding-top: 18px;
+            padding-bottom: 4px;
+            font-size: 15pt;
+            font-weight: normal;
+            color: #efefef;
+        }
+
+        .ProductSection p {
+            margin-top: 0px;
+        }
+
+        .ManualTableWrap {
+            width: 0;
+            min-width: 100%;
+            overflow-x: auto;
+            margin-bottom: 16px;
+        }
+
+        .ManualTable {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10.5pt;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        .ManualTable th {
+            background-color: #1b2733;
+            color: #efefef;
+            font-weight: normal;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-variant: small-caps;
+            font-size: 12pt;
+            padding: 6px 8px;
+            border: 1px solid #56697c;
+        }
+
+        .ManualTable td {
+            padding: 6px 8px;
+            border: 1px solid #56697c;
+            vertical-align: top;
+            color: #dfe6ec;
+        }
+
+        .ManualTable td:first-child {
+            white-space: nowrap;
+            color: #efefef;
+        }
+
+        .ManualNote {
+            background-color: #1b2733;
+            border-left: 3px solid #b44b4b;
+            padding: 8px 12px;
+            margin-bottom: 16px;
+            color: #d6e2ec;
+        }
+
+        .ManualPair {
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .ManualPair td {
+            width: 50%;
+            padding: 0px 6px;
+            vertical-align: top;
+        }
+
+        .BackToTop {
+            font-size: 9pt;
+            text-align: right;
+            padding-top: 6px;
+        }
+
+        kbd {
+            font-family: Consolas, 'Courier New', monospace;
+            font-size: 9pt;
+            background-color: #1b2733;
+            border: 1px solid #56697c;
+            border-radius: 3px;
+            padding: 0px 4px;
+        }
+    </style>
+</head>
+<body style="background: fixed; background-color: #3d5369; background-image: url(../images/jezric-background.png); background-position: top left; background-repeat: no-repeat; ">
+
+    <div id="logodiv" class="MainTable" style="padding-top:20px;">
+        <table width="100%">
+            <tr>
+                <td>
+                    <center>
+
+                        <table id="mainContentTable">
+                            <tr>
+                                <td style="border-top:solid 1px Gray;padding-bottom:30px;">
+
+                                    <center><h1>Talea</h1></center>
+                                    <center><div class="ProductTagline" style="padding-bottom:0px;">A 16-track multi-mode sequencer for VCV Rack 2 &middot; User Manual</div></center>
+                                    <center><div class="ProductThumbHint"><a href="../">&larr; Jezric Software</a></div></center>
+
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ Overview -->
+                            <tr>
+                                <td class="ProductSection" id="top">
+
+                                    <h2>Overview</h2>
+                                    <div class="ProductTagline">
+                                        Sixteen tracks, each either a Euclidean / algorithmic sequencer or a plain step sequencer, with chords, note repeats,
+                                        grooves, phrases, randomness, cycles, sixteen patterns and a song mode, all in one module.
+                                    </div>
+
+                                    <a href="images/talea-main.png" class="ProductThumb" target="_blank" title="Click to enlarge">
+                                        <img src="images/talea-main.png" alt="The Talea module in VCV Rack" />
+                                    </a>
+                                    <div class="ProductThumbHint">Talea IN, Talea and Talea OUT in VCV Rack. Click to enlarge</div>
+
+                                    <p style="padding-top:12px;">
+                                        Talea is designed around the mouse and the screen. Every function has its own control or its own place on the display,
+                                        so nothing is hidden. Amounts are set with knobs, and choices from a list (scale, groove, phrase and so on) are picked by
+                                        name on the display, where every option is in view.
+                                    </p>
+
+                                    <ul class="ProductFeatures">
+                                        <li><b>16 tracks</b>, each with its own steps (up to 64), step length and loop length, so tracks can drift against each other.</li>
+                                        <li><b>Two modes per track</b>: <b>EUCLID</b> spreads pulses evenly over the steps and plays a note pool; <b>SEQ</b> is a step sequencer where every step has its own chord, velocity and gate.</li>
+                                        <li><b>Chords</b> of up to 8 notes, voiced and arpeggiated, kept in a scale, with full polyphonic output on the OUT expander.</li>
+                                        <li><b>Note repeats</b> with velocity ramps and speeding-up or slowing-down repeats.</li>
+                                        <li><b>Grooves, swing, probability</b> and per-parameter <b>randomness</b>.</li>
+                                        <li><b>Step locks</b>: any step can carry its own value of most parameters.</li>
+                                        <li><b>Cycles</b>: a track can play up to 8 variations of itself in turn.</li>
+                                        <li><b>16 patterns</b>, chains and a <b>song mode</b>, plus <b>Temp</b> for edits you can throw away.</li>
+                                        <li><b>Recording</b> from a keyboard, live or step by step, in SEQ mode.</li>
+                                        <li><b>MIDI out</b> with a channel per track, MIDI clock, and <b>CC tracks</b> that send controller values.</li>
+                                        <li><b>Hover tooltips</b> on every control, jack and part of the display, and <b>undo</b> for every edit.</li>
+                                    </ul>
+
+                                    <h3>Contents</h3>
+                                    <ol class="ManualToc">
+                                        <li><a href="#concepts">Key ideas</a></li>
+                                        <li><a href="#quickstart">Quick start</a></li>
+                                        <li><a href="#transport">Transport &amp; clock</a></li>
+                                        <li><a href="#perform">Perform buttons</a></li>
+                                        <li><a href="#knobs">The knobs</a></li>
+                                        <li><a href="#pads">Pads &amp; pad modes</a></li>
+                                        <li><a href="#locks">Step locks &amp; step pools</a></li>
+                                        <li><a href="#cycles">Cycles</a></li>
+                                        <li><a href="#display">The display pages</a></li>
+                                        <li><a href="#seq">SEQ mode &amp; recording</a></li>
+                                        <li><a href="#patterns">Patterns, Temp &amp; song</a></li>
+                                        <li><a href="#random">Randomness</a></li>
+                                        <li><a href="#cc">CC tracks</a></li>
+                                        <li><a href="#midi">MIDI out</a></li>
+                                        <li><a href="#outputs">Outputs</a></li>
+                                        <li><a href="#expanders">IN &amp; OUT expanders</a></li>
+                                        <li><a href="#menu">Context menu</a></li>
+                                        <li><a href="#tips">Tips &amp; troubleshooting</a></li>
+                                    </ol>
+
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ Concepts -->
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="concepts">
+
+                                    <h2>Key Ideas</h2>
+
+                                    <h3>The selected track</h3>
+                                    <p>
+                                        The row of small numbered buttons above the pads selects a track. The knobs always show the selected track's values:
+                                        when you change track, they jump to that track's settings. CV and randomness never move a knob. Instead an orange
+                                        <b>modulation ring</b> around the knob shows where the value is playing right now, and the display's info line shows
+                                        <i>stored&gt;live</i>, for example <i>VEL 64&gt;87</i>.
+                                    </p>
+
+                                    <h3>Track groups</h3>
+                                    <p>
+                                        <kbd>Ctrl</kbd>+click track buttons to group them, or <kbd>Shift</kbd>+click to group a range from the selected track.
+                                        A knob turn then moves every grouped track by the same amount, each kept within its range. Grouped tracks light dim red
+                                        and the header reads <i>GROUP</i>. A plain click selects one track again. The <b>ALL TRACKS</b> button groups every track.
+                                    </p>
+
+                                    <h3>The context display</h3>
+                                    <p>
+                                        The large display has a tab for each page: TRACK, STEP, CYCLE, KEYS, SCALE, PHRASE, STYLE, REPEAT, GROOVE, RANDOM,
+                                        PATTERN, SONG and SETUP. Click a tab to open a page and click the options on it to change them. Turning a knob opens the
+                                        page that belongs to it (Range opens PHRASE, Voicing opens STYLE and so on). You can turn that off with <i>Display follows
+                                        knobs</i> in the context menu. The line along the bottom of the display (the <b>info line</b>) describes what you are
+                                        looking at or about to do.
+                                    </p>
+
+                                    <h3>Tooltips and undo</h3>
+                                    <p>
+                                        Hover over any knob, button, jack, light, page tab or option for a short description. Every edit, including pad clicks,
+                                        display options, copy, paste and clear, is one step in Rack's undo history (<kbd>Ctrl</kbd>+<kbd>Z</kbd>). Selections,
+                                        the pad mode and the displayed page aren't edits, so they aren't recorded.
+                                    </p>
+
+                                    <h3>Modifier clicks</h3>
+                                    <p>
+                                        Every action is a single click. <kbd>Ctrl</kbd>+click and <kbd>Shift</kbd>+click select several things at once, and
+                                        right-click opens menus and resets values.
+                                    </p>
+
+                                    <div class="BackToTop"><a href="#top">Back to top</a></div>
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ Quick start -->
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="quickstart">
+
+                                    <h2>Quick Start</h2>
+
+                                    <ol class="ProductFeatures">
+                                        <li>Add <b>Talea</b> and, directly to its right, <b>Talea OUT</b>. The OUT's green link light comes on when they touch.</li>
+                                        <li>Patch OUT's track 1 <b>Pitch</b>, <b>Gate</b> and <b>Vel</b> into a polyphonic voice: an oscillator's V/Oct, an envelope's gate and a VCA. Make sure the whole voice is polyphonic (see <a href="#tips">Tips</a>).</li>
+                                        <li>Press <b>PLAY</b>. Track 1 is selected and silent, because a new track has no pulses.</li>
+                                        <li>Turn <b>PULSES</b> up: the hits spread out over the 16 steps. Turn <b>ROTATE</b> to shift them.</li>
+                                        <li>Open the <b>KEYS</b> page and click a few keys to build a chord (the track's <b>note pool</b>). Turn <b>VOICING</b> and pick a <b>STYLE</b> to move the chord around, or set <b>PLAY</b> to <b>MONO</b> on the STYLE page to arpeggiate it.</li>
+                                        <li>Pick a scale on the <b>SCALE</b> page, then turn <b>RANGE</b> to let the notes climb along a phrase.</li>
+                                        <li>Select track 2 and repeat with different <b>STEPS</b> and <b>DIVISION</b>. Uneven step counts drift against each other and make long, evolving patterns.</li>
+                                    </ol>
+
+                                    <p>
+                                        For a step sequence instead, open the <b>SETUP</b> page and set <b>MODE</b> to <b>SEQ</b>. Click a pad to select a step
+                                        and add its notes on the KEYS page (see <a href="#seq">SEQ mode</a>).
+                                    </p>
+
+                                    <div class="BackToTop"><a href="#top">Back to top</a></div>
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ Transport -->
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="transport">
+
+                                    <h2>Transport &amp; Clock</h2>
+
+                                    <div class="ManualTableWrap">
+                                        <table class="ManualTable">
+                                            <tr><th>Control</th><th>What it does</th></tr>
+                                            <tr><td>PLAY</td><td>Starts and pauses the transport. Play resumes where it stopped. Pausing releases all gates.</td></tr>
+                                            <tr><td>RESET</td><td>Sends every track back to step 1. <i>Kill stuck notes</i> is in the right-click menu.</td></tr>
+                                            <tr><td>TAP</td><td>Tap in time to set the tempo (internal clock only).</td></tr>
+                                            <tr><td>TEMPO</td><td>Internal clock, 24&ndash;280 BPM, default 120. Ignored while CLK in is patched.</td></tr>
+                                            <tr><td>CLK light</td><td>Blinks on each quarter note.</td></tr>
+                                            <tr><td>CLK in</td><td>External clock triggers. The pulses per quarter note are set in the context menu (1, 2, 4, 8, 12, 24, 48 or 96; default 4). Positions between pulses are interpolated, so tracks with fine divisions stay smooth.</td></tr>
+                                            <tr><td>RST in</td><td>Trigger: every track back to step 1.</td></tr>
+                                            <tr><td>RUN in</td><td>Gate: plays while high. Set <i>Run input</i> to trigger in the context menu and each trigger toggles play instead.</td></tr>
+                                            <tr><td>REC, OVD</td><td>Recording from a keyboard into a SEQ-mode track, and overdub. See <a href="#recording">Recording</a>.</td></tr>
+                                            <tr><td>NOTE IN V/OCT, GATE, VEL</td><td>Polyphonic keyboard input, for example from VCV MIDI&gt;CV with its polyphony set to 8. In SEQ mode the keys also play on the selected track. See <a href="#recording">Recording</a>.</td></tr>
+                                        </table>
+                                    </div>
+
+                                    <div class="BackToTop"><a href="#top">Back to top</a></div>
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ Perform -->
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="perform">
+
+                                    <h2>Perform Buttons</h2>
+
+                                    <div class="ManualTableWrap">
+                                        <table class="ManualTable">
+                                            <tr><th>Button</th><th>What it does</th></tr>
+                                            <tr><td>TEMP</td><td>While on, every pattern edit (knobs, steps, cycles, random, page options) is temporary. Click again to <b>discard</b> the changes and go back. <kbd>Ctrl</kbd>+click to <b>keep</b> them. Right-click for Keep / Discard. Mutes are never reverted, and mutes staged during Temp apply when it ends. The display shows a yellow TEMP tag.</td></tr>
+                                            <tr><td>ALL TRACKS</td><td>While on, knob turns move every track by the same amount (the header reads ALL).</td></tr>
+                                            <tr><td>RND ASSIGN</td><td>While on, turning a knob sets that parameter's <b>random amount</b> instead of its value: centre = none, clockwise up to +100 %, counter-clockwise down to &minus;100 %. Opens the RANDOM page. See <a href="#random">Randomness</a>.</td></tr>
+                                        </table>
+                                    </div>
+
+                                    <div class="BackToTop"><a href="#top">Back to top</a></div>
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ Knobs -->
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="knobs">
+
+                                    <h2>The Knobs</h2>
+                                    <div class="ProductTagline">
+                                        The knobs set the selected track (or, with CYC EDIT on, the selected cycle). Many of them can also be locked per step.
+                                    </div>
+
+                                    <h3>Shape</h3>
+                                    <div class="ManualTableWrap">
+                                        <table class="ManualTable">
+                                            <tr><th>Knob</th><th>Range</th><th>What it does</th></tr>
+                                            <tr><td>Steps</td><td>1&ndash;64, default 16</td><td>Number of steps in the track's loop.</td></tr>
+                                            <tr><td>Pulses</td><td>0&ndash;Steps, default 0</td><td>Euclidean hits, spread as evenly as possible over the steps. 0 = silent. A new track starts at 0.</td></tr>
+                                            <tr><td>Rotate</td><td>0&ndash;Steps&minus;1</td><td>Shifts the whole pattern along the steps, manual hits included.</td></tr>
+                                            <tr><td>Division</td><td>1/1 to 1/64, triplets, free</td><td>Length of each step as a note value. Free moves continuously between note values.</td></tr>
+                                            <tr><td>Length</td><td>1/64 to 16 bars, &infin;</td><td>Restarts the track after this long, whatever Steps is. At &infin; (the default) Steps alone sets the loop. Steps it cuts off are drawn faint.</td></tr>
+                                        </table>
+                                    </div>
+
+                                    <h3>Repeats</h3>
+                                    <div class="ManualTableWrap">
+                                        <table class="ManualTable">
+                                            <tr><th>Knob</th><th>Range</th><th>What it does</th></tr>
+                                            <tr><td>Repeats</td><td>0&ndash;48, &infin;</td><td>Extra triggers after each pulse. At &infin; they continue until the next pulse. <b>Choke</b> (the next pulse cuts them) or <b>Tail</b> (bursts overlap, up to 16) is set on the REPEAT page.</td></tr>
+                                            <tr><td>Ramp</td><td>&plusmn;100 %</td><td>Velocity across the repeats. Clockwise: builds up to Velocity. Counter-clockwise: fades down from it.</td></tr>
+                                            <tr><td>Time</td><td>1 to 1/64, dotted and triplet</td><td>Spacing between repeats, always a note value.</td></tr>
+                                            <tr><td>Pace</td><td>&plusmn;, centre = even</td><td>Clockwise: the repeats slow down. Counter-clockwise: they speed up. At full turn the gap doubles (or halves) every 4 repeats.</td></tr>
+                                        </table>
+                                    </div>
+
+                                    <h3>Groove</h3>
+                                    <div class="ManualTableWrap">
+                                        <table class="ManualTable">
+                                            <tr><th>Knob</th><th>Range</th><th>What it does</th></tr>
+                                            <tr><td>Velocity</td><td>0&ndash;127, default 100</td><td>Base velocity of the track's notes.</td></tr>
+                                            <tr><td>Probability</td><td>&plusmn;, centre = always</td><td>Chance notes play. Clockwise: any note can skip, repeats included. Counter-clockwise: pulses only (a skipped pulse skips its repeats). The same notes skip on every pass; shift which ones on the RANDOM page.</td></tr>
+                                            <tr><td>Sustain</td><td>0&ndash;100 %</td><td>Gate length: 50 % = one step, 100 % = two (notes overlap and retrigger).</td></tr>
+                                            <tr><td>Accent</td><td>0&ndash;100 %</td><td>Velocity variation around Velocity (up to &plusmn;63), shaped by the Groove chosen on the GROOVE page.</td></tr>
+                                            <tr><td>Timing</td><td>&plusmn;, centre = straight</td><td>Swing: every second step later (clockwise) or earlier (counter-clockwise). The subdivision is on the GROOVE page.</td></tr>
+                                            <tr><td>Delay</td><td>&plusmn;1 step</td><td>Moves the whole track later (clockwise) or earlier (counter-clockwise).</td></tr>
+                                        </table>
+                                    </div>
+
+                                    <h3>Tonal</h3>
+                                    <div class="ManualTableWrap">
+                                        <table class="ManualTable">
+                                            <tr><th>Knob</th><th>Range</th><th>What it does</th></tr>
+                                            <tr><td>Pitch</td><td>&plusmn;4 octaves</td><td>Transposes the note pool in semitones, snapped to the scale, so with a scale some positions give the same notes.</td></tr>
+                                            <tr><td>Harmony</td><td>endless</td><td>Moves one chord note at a time: each clockwise detent moves the lowest pool note up a scale step, each counter-clockwise detent the highest down one. Turning back moves a different note, so right-click &rarr; <i>Restore pool</i> to undo a run of turns.</td></tr>
+                                            <tr><td>Voicing</td><td>0&ndash;16</td><td>How far the Style moves the chord: each position takes the lowest note up an octave (or the highest down). Style is on the STYLE page.</td></tr>
+                                            <tr><td>Range</td><td>0&ndash;48 semitones</td><td>Adds up to this many semitones above the pool, following the Phrase over its length, snapped to the scale. Phrase is on the PHRASE page.</td></tr>
+                                        </table>
+                                    </div>
+
+                                    <h3>Random</h3>
+                                    <div class="ManualTableWrap">
+                                        <table class="ManualTable">
+                                            <tr><th>Knob</th><th>Range</th><th>What it does</th></tr>
+                                            <tr><td>Variance</td><td>0&ndash;100 %</td><td>The chance each of the track's 16 random values is re-rolled when the sequence comes round. 0 = the same values forever, 100 % = new values every pass.</td></tr>
+                                            <tr><td>Rate</td><td>1/64 to 4 bars</td><td>How fast the track's random values advance.</td></tr>
+                                        </table>
+                                    </div>
+
+                                    <p>
+                                        Right-click a knob for Rack's usual menu (type a value, reset). With <b>COPY</b>, <b>PASTE</b> or <b>CLEAR</b> armed,
+                                        clicking a knob copies, pastes or resets that one parameter instead of turning it.
+                                    </p>
+
+                                    <div class="BackToTop"><a href="#top">Back to top</a></div>
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ Pads -->
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="pads">
+
+                                    <h2>Pads &amp; Pad Modes</h2>
+                                    <div class="ProductTagline">
+                                        The 16 pads do one job at a time. The lit PAD MODE button shows which.
+                                    </div>
+
+                                    <div class="ManualTableWrap">
+                                        <table class="ManualTable">
+                                            <tr><th>Mode</th><th>What the pads do</th></tr>
+                                            <tr><td>STEP</td><td>The 16 steps of the selected track (the step page buttons pick which 16 of up to 64). Click turns a step's pulse on or off; these edits stay put when you change Pulses. <kbd>Ctrl</kbd>+click selects steps for <a href="#locks">step locks</a>. In <a href="#seq">SEQ mode</a>: click selects a step, right-click makes it a rest. Click STEP again to end a selection.</td></tr>
+                                            <tr><td>CYCLE</td><td>Pads 1&ndash;8 are the track's <a href="#cycles">cycles</a>. Click selects one (clicking past the last adds cycles). <kbd>Ctrl</kbd>+click mutes a cycle. The playing cycle flashes white.</td></tr>
+                                            <tr><td>MUTE</td><td>Pads are tracks (orange = playing, blue-grey = muted). Click a pad to stage a change (it blinks); click MUTE again to apply them all together. <kbd>Ctrl</kbd>+click mutes or unmutes at once. Right-click MUTE for the timing (now, beat, bar, pattern end) and whether muting lets notes finish or cuts them. Clicking a page tab leaves MUTE mode and drops staged changes.</td></tr>
+                                            <tr><td>PATTERN</td><td>Pads are the 16 <a href="#patterns">pattern slots</a>. Click queues a switch, <kbd>Shift</kbd>+click builds a chain, <kbd>Ctrl</kbd>+click switches at once. Right-click PATTERN for the switch timing and to clear the chain.</td></tr>
+                                        </table>
+                                    </div>
+
+                                    <h3>Other pad-area buttons</h3>
+                                    <div class="ManualTableWrap">
+                                        <table class="ManualTable">
+                                            <tr><th>Button</th><th>What it does</th></tr>
+                                            <tr><td>CYC EDIT</td><td>On: knob turns change only the selected cycle, and only that cycle plays. Off: knobs move the track and every cycle's own value with it. The display shows a red <i>CYC n EDIT</i> tag.</td></tr>
+                                            <tr><td>COPY</td><td>Arms copy: the next click copies what you click: a track button (the whole track), a step, cycle or pattern pad, or a knob (one parameter). The clipboard isn't part of a pattern, so you can paste into another one.</td></tr>
+                                            <tr><td>PASTE</td><td>Arms paste (when something is copied): every matching target you click receives it, until you click PASTE again. A copied parameter can be pasted onto track buttons or cycle pads.</td></tr>
+                                            <tr><td>CLEAR</td><td>Arms clear: the next click resets what you click to its default (a knob also loses its random amount). <kbd>Ctrl</kbd>+click CLEAR to keep it armed until you click it again.</td></tr>
+                                            <tr><td>Step page 1&ndash;16 &hellip; 49&ndash;64</td><td>In STEP mode, which 16 steps the pads show. Pages past the track's Steps are off. Picking a page turns Follow off; a page's light blinks while the playhead is on it and another page is shown.</td></tr>
+                                            <tr><td>FOLLOW</td><td>The pads and the STEP page follow the playhead's page.</td></tr>
+                                            <tr><td>Track buttons 1&ndash;16</td><td>Click selects a track (in any pad mode). <kbd>Ctrl</kbd>+click adds or removes a track from the group, <kbd>Shift</kbd>+click groups a range. Light: white flash on the track's notes, red = selected, dim red = grouped, blue-grey = muted, dim orange = holds something other than defaults.</td></tr>
+                                        </table>
+                                    </div>
+
+                                    <div class="BackToTop"><a href="#top">Back to top</a></div>
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ Locks -->
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="locks">
+
+                                    <h2>Step Locks &amp; Step Pools</h2>
+
+                                    <p>
+                                        In STEP pad mode, <kbd>Ctrl</kbd>+click pads to select steps (they light blue and the display shows a LOCK tag). While
+                                        steps are selected, the knobs show the first selected step's value, and turning a knob writes that value as a
+                                        <b>lock</b> on every selected step. These can be locked: Repeats, Ramp, Time, Pace, Velocity, Probability, Sustain,
+                                        Accent, Timing, Delay, Pitch, Voicing and Range. Steps, Pulses, Rotate, Division and Length set the loop, so they
+                                        can't be locked and their knobs dim.
+                                    </p>
+                                    <p>
+                                        A locked step plays its lock on its pulse and its repeats; randomness still applies on top. Steps with locks show light
+                                        blue. The <b>STEP</b> page shows a lane for each locked parameter (up to 4): click or drag in a lane to set values across
+                                        steps, right-click to remove a lock.
+                                    </p>
+                                    <p>
+                                        With steps selected, the <b>KEYS</b> page edits a <b>step pool</b>: the selected steps get their own chord or note instead
+                                        of the track's pool (Pitch, Voicing, Style and Range still apply). <b>TRACK POOL</b> on the KEYS page removes it again.
+                                    </p>
+                                    <p>
+                                        Outside CYC EDIT, locks belong to the track and every cycle plays them. In CYC EDIT they go to the edited cycle only.
+                                        Click STEP again, change track or leave STEP mode to end the selection. Copy, paste and clear work on step pads too.
+                                    </p>
+
+                                    <div class="BackToTop"><a href="#top">Back to top</a></div>
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ Cycles -->
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="cycles">
+
+                                    <h2>Cycles</h2>
+
+                                    <p>
+                                        A track can have up to 8 <b>cycles</b>. Each time the track finishes a loop (its Length, or one pass of its Steps), it
+                                        moves on to its next cycle. A cycle starts out identical to the track. Give it changes of its own and the track plays a
+                                        different variation each time round, for example a fill on every fourth bar.
+                                    </p>
+                                    <ul class="ProductFeatures">
+                                        <li>Set the number of cycles on the <b>CYCLE</b> page (COUNT), or click past the last cycle in CYCLE pad mode.</li>
+                                        <li>Select a cycle and turn on <b>CYC EDIT</b>. Only that cycle plays, and everything you change goes to it: knobs, step on/off edits, locks, scale and pool, phrase, mode and sequence.</li>
+                                        <li>With CYC EDIT off, turning a knob moves the track and every cycle's own value together, so the variations keep their differences.</li>
+                                        <li>On the STEP and TRACK pages, each cycle has a lane showing how it plays. On the pads, dim red marks a step the playing cycle adds and dark orange a step it drops.</li>
+                                        <li><b>CLEAR</b> on the CYCLE page removes a cycle's own changes: all of them, or one item (step edits, locks, scale, sequence, mode, a parameter or a random amount).</li>
+                                        <li>A muted cycle keeps the track silent while it plays.</li>
+                                    </ul>
+
+                                    <div class="BackToTop"><a href="#top">Back to top</a></div>
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ Display pages -->
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="display">
+
+                                    <h2>The Display Pages</h2>
+
+                                    <div class="ManualTableWrap">
+                                        <table class="ManualTable">
+                                            <tr><th>Page</th><th>What's on it</th></tr>
+                                            <tr><td>TRACK</td><td>The selected track's Steps, Pulses, Rotate, Division and Length, the clock (INT or EXT) and tempo, and the current 16 steps with the playhead. With several cycles, a lane per cycle showing how each plays.</td></tr>
+                                            <tr><td>STEP</td><td>The current 16 steps, with a lane per locked parameter (click / drag to edit, right-click removes). In SEQ mode: velocity (N.VEL) and GATE lanes. With several cycles, a lane per cycle.</td></tr>
+                                            <tr><td>CYCLE</td><td><b>COUNT</b> of cycles, the <b>CYCLE</b> being edited (* = has its own changes, (n) = muted), <b>MUTE</b>, and <b>CLEAR</b> for the cycle's own changes.</td></tr>
+                                            <tr><td>KEYS</td><td>A 4-octave keyboard (the arrows shift it an octave). Click keys to build the track's note pool (up to 8 notes; keys off the scale can't be added). With steps selected it edits their step pool, and in SEQ mode the selected step's chord. A dot marks every note sounding now.</td></tr>
+                                            <tr><td>SCALE</td><td><b>SCALE</b> and <b>ROOT</b>, and <b>NOTES</b>: a one-octave keyboard. Click a note there to add it to or remove it from the scale, which then becomes the <b>User</b> scale.</td></tr>
+                                            <tr><td>PHRASE</td><td>The contour Range follows: Cadence 1&ndash;4, Saw, Triangle, Sine, Pulse, CV (from the IN expander) or <b>User</b> (draw it on the grid). Its length in bars (or loops), and <b>SYNC</b>: BARS runs on pattern time, LOOP restarts with the track's loop.</td></tr>
+                                            <tr><td>STYLE</td><td><b>STYLE</b>: the path through the Voicing positions (Fixed, Ramp, Climb, Up/Down, Climb Up/Down). <b>PLAY</b>: POLY chords or MONO arpeggio. <b>VOICE</b>: UP takes the lowest note up an octave, DOWN the highest down.</td></tr>
+                                            <tr><td>REPEAT</td><td>One burst of repeats drawn out, and <b>MODE</b>: CHOKE (the next pulse cuts the repeats) or TAIL (bursts overlap).</td></tr>
+                                            <tr><td>GROOVE</td><td><b>GROOVE</b>: the Accent shape, either a one-bar percussion pattern (Agogo, Timbales, Congas, Bongo) or a waveform over a length. Its length, <b>SWING</b> subdivision (every second unit of 1, 2 or 4 steps moves), and <b>SYNC</b>.</td></tr>
+                                            <tr><td>RANDOM</td><td>Every parameter's random amount, and whether it changes each cycle loop (C) or at the Random Rate (R). The SEQ row: REGEN, PHASE, LOCK, PROB and SLEW. CLEAR removes amounts. See <a href="#random">Randomness</a>.</td></tr>
+                                            <tr><td>PATTERN</td><td><b>PLAY</b> queues a slot, <b>COPY TO</b> copies the playing pattern into a slot (TEMP TO with Temp on), <b>CLEAR</b> resets a slot, <b>SWITCH</b> sets when a queued switch happens.</td></tr>
+                                            <tr><td>SONG</td><td>A song: up to 64 entries, each a pattern played for a number of bars. See <a href="#song">Song mode</a>.</td></tr>
+                                            <tr><td>SETUP</td><td><b>MIDI CH</b> for the track, MIDI <b>CLOCK</b> out, <b>TYPE</b> (NOTE or CC), <b>MODE</b> (EUCLID or SEQ), <b>CYC MODE</b> (in CYC EDIT), and the CC number for CC tracks.</td></tr>
+                                        </table>
+                                    </div>
+
+                                    <p>
+                                        <b>Scales:</b> Chromatic, Major, Natural Minor, Harmonic Minor, Melodic Minor, Dorian, Phrygian, Lydian, Mixolydian,
+                                        Locrian, Major Pentatonic, Minor Pentatonic, Blues, Major Blues, Whole Tone, Diminished (H-W), Diminished (W-H),
+                                        Phrygian Dominant, Hungarian Minor, Double Harmonic, Japanese (In), Hirajoshi, Arabic, and User. Scale, root and pool
+                                        are per track, and a cycle can have its own.
+                                    </p>
+
+                                    <div class="BackToTop"><a href="#top">Back to top</a></div>
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ SEQ mode -->
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="seq">
+
+                                    <h2>SEQ Mode &amp; Recording</h2>
+                                    <div class="ProductTagline">
+                                        Any track, or any single cycle of a track, can be a classic step sequencer instead of a Euclidean one.
+                                    </div>
+
+                                    <p>
+                                        Set <b>MODE</b> to <b>SEQ</b> on the SETUP page (or use the context menu). Each step holds a chord of up to 8 notes
+                                        (or nothing: a rest), its own velocity, and a gate length in steps. A gate longer than one step ties the note over the
+                                        following steps until it ends or the next step with notes cuts it. Steps, Division and Length still set the loop, so
+                                        cycles, randomness and patterns work as usual. When you switch an empty track to SEQ, it is filled from the hits that
+                                        were playing, so the rhythm carries over.
+                                    </p>
+
+                                    <h3>Editing steps</h3>
+                                    <ul class="ProductFeatures">
+                                        <li><b>Click</b> a pad (STEP mode) to select that step. It lights green and the KEYS page shows its notes.</li>
+                                        <li>On the <b>KEYS</b> page, click keys to add or remove notes from the selected step's chord. <b>REST</b> removes all its notes.</li>
+                                        <li><b>Right-click</b> a pad to make that step a rest.</li>
+                                        <li><kbd>Ctrl</kbd>+click pads to select several steps for <a href="#locks">locks</a> (blue). KEYS then edits all of them together.</li>
+                                        <li>The <b>STEP</b> page shows <b>N.VEL</b> (velocity) and <b>GATE</b> lanes: click or drag to set, right-click for the default.</li>
+                                        <li>Copy, paste and clear on a step pad include its notes; on a track button, its whole sequence.</li>
+                                    </ul>
+
+                                    <h3>What applies in SEQ mode</h3>
+                                    <p>
+                                        Notes play as entered, plus <b>Pitch</b> and Transpose, kept in the scale. Velocity locks, randomness, IN-expander CV,
+                                        Accent, Ramp, Probability, Repeats, Timing, Delay and Sustain (which shapes the last step of each gate) still apply.
+                                        Pulses, Rotate, Harmony, Voicing and Range have no effect: their knobs dim and don't turn, and the PHRASE and STYLE
+                                        pages dim. The Velocity knob sets the velocity of new notes.
+                                    </p>
+
+                                    <h3>Scales in SEQ mode</h3>
+                                    <p>
+                                        With any scale other than Chromatic, the track stays in the scale. Wherever a note outside it would appear, it moves to
+                                        the <b>nearest scale note</b>, and when two are equally near it goes <b>up</b>. In a seven-note scale like Major, every
+                                        note outside the scale is a tie, so it always goes up. In scales with wider gaps the nearer note wins: in C major
+                                        pentatonic, F becomes E.
+                                    </p>
+                                    <ul class="ProductFeatures">
+                                        <li>On the KEYS page, keys outside the scale are dimmed and can't be added. A note already in the chord can still be removed.</li>
+                                        <li>Notes from NOTE IN are moved into the scale before they sound and before they're recorded, so what's recorded is what you heard.</li>
+                                        <li>After Pitch and Transpose, the notes are moved into the scale again.</li>
+                                        <li><b>Changing the scale, root or a User note moves the stored notes</b> onto the new scale. Notes that land on the same note merge. Switching back doesn't restore them, but the change is one undo step: <kbd>Ctrl</kbd>+<kbd>Z</kbd> brings them back. Changing the root moves notes into the new key; it doesn't transpose them (use Pitch or Transpose for that).</li>
+                                    </ul>
+
+                                    <h3 id="recording">Recording</h3>
+                                    <p>
+                                        Patch a keyboard into <b>NOTE IN</b>: polyphonic V/Oct, Gate and (optionally) Velocity, for example from VCV MIDI&gt;CV
+                                        with its polyphony set to 8. Select a SEQ-mode track and press <b>REC</b>. Notes go into the selected track's sequence,
+                                        or the edited cycle's in CYC EDIT.
+                                    </p>
+                                    <ul class="ProductFeatures">
+                                        <li><b>Playing: live recording</b> (REC light solid). Each note goes to the nearest step, and its length is rounded to whole steps. Keys played together form a chord.</li>
+                                        <li><b>Stopped: step recording</b> (REC light blinking). Each chord you play goes to the <b>cursor</b> step (the blinking red pad), and when you let go of all keys the cursor moves to the next step. Click a pad to move the cursor.</li>
+                                        <li><b>OVD</b> (overdub): with it off (the default), notes played on a step that already has notes replace them. With it on, they're added to the step's chord.</li>
+                                        <li>One recording, from REC on to REC off, is one undo step.</li>
+                                        <li>Unpatched VEL: notes take the Velocity knob's value.</li>
+                                    </ul>
+
+                                    <h3>Monitoring</h3>
+                                    <p>
+                                        In SEQ mode, the keys you hold at NOTE IN always sound on the selected track's outputs (main jacks, OUT expander and
+                                        MIDI), with REC on or off. While you hold keys they take over the track's outputs from its sequence. Adding keys to a held
+                                        chord doesn't retrigger the gate.
+                                    </p>
+
+                                    <div class="BackToTop"><a href="#top">Back to top</a></div>
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ Patterns -->
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="patterns">
+
+                                    <h2>Patterns, Temp &amp; Song</h2>
+
+                                    <h3>Patterns</h3>
+                                    <p>
+                                        Talea holds 16 patterns. A pattern is the whole state of the 16 tracks. Switch with the pads in PATTERN mode, the
+                                        PATTERN page or the IN expander's Pattern input. A switch waits for the SWITCH timing (now, beat, bar or end of pattern;
+                                        when stopped it is immediate), restarts every track from step 1 and ends Temp. <kbd>Shift</kbd>+click pattern pads to
+                                        build a <b>chain</b>: each time a pattern ends, the next one in the chain starts, round and round. The module's
+                                        patterns are saved with the patch, and as a module preset through Rack's <i>Preset</i> menu.
+                                    </p>
+
+                                    <h3>Temp</h3>
+                                    <p>
+                                        Turn on <b>TEMP</b> to experiment: every edit is temporary until you decide. Click TEMP again to throw the changes away,
+                                        or <kbd>Ctrl</kbd>+click it to keep them. On the PATTERN page, <b>TEMP TO</b> saves the current state into another slot.
+                                    </p>
+
+                                    <h3 id="song">Song mode</h3>
+                                    <p>
+                                        The <b>SONG</b> page arranges patterns into a song of up to 64 entries, each playing one pattern for a number of bars
+                                        (1&ndash;999). Click <b>+</b> to add the playing pattern, click an entry to select it, and use the mouse wheel over an
+                                        entry to change its bars. The rows edit the selected entry: <b>PATTERN</b>, <b>BARS</b> (or PAT = the pattern's own
+                                        length) and <b>EDIT</b> (add, insert, delete, clear song). With the SONG page open in PATTERN pad mode, clicking a pattern
+                                        pad adds that pattern to the song.
+                                    </p>
+                                    <ul class="ProductFeatures">
+                                        <li><b>SONG ON</b> starts song mode. Each entry plays its pattern for its bars, then the next entry starts on the bar line.</li>
+                                        <li><b>LOOP</b> returns to the first entry at the end. Without it the sequencer stops.</li>
+                                        <li><b>FOLLOW</b> keeps the playing entry in view.</li>
+                                        <li>Switching patterns by hand takes over from the song. SONG ON blinks, and clicking it resumes the song where it left off, on the next bar line.</li>
+                                    </ul>
+
+                                    <div class="BackToTop"><a href="#top">Back to top</a></div>
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ Random -->
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="random">
+
+                                    <h2>Randomness</h2>
+
+                                    <p>
+                                        Each track has a random sequence of 16 values per parameter. To randomise a parameter, turn on <b>RND ASSIGN</b> and
+                                        turn its knob: the amount is bipolar, so clockwise pushes the value up (by up to the amount times the parameter's range)
+                                        and counter-clockwise pushes it down. Steps, Division and Length can't be randomised, because they set the loop length.
+                                    </p>
+                                    <ul class="ProductFeatures">
+                                        <li><b>Variance</b> sets how often values are re-rolled; at 0 the same 16 values repeat forever, so random can be a fixed, repeatable variation.</li>
+                                        <li><b>Rate</b> sets how fast values advance. On the RANDOM page, click a parameter's C / R to make it change once per cycle loop instead.</li>
+                                        <li><b>REGEN</b> rolls new values (also by trigger at the IN expander's REGEN). <b>PHASE</b> shifts the sequence. <b>LOCK</b> freezes the values as they are now. <b>PROB</b> shifts which notes Probability skips. <b>SLEW</b> glides between values.</li>
+                                        <li>Random values never move the knobs; the orange modulation ring shows them.</li>
+                                    </ul>
+
+                                    <div class="BackToTop"><a href="#top">Back to top</a></div>
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ CC -->
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="cc">
+
+                                    <h2>CC Tracks</h2>
+
+                                    <p>
+                                        Set <b>TYPE</b> to <b>CC</b> on the SETUP page and the track plays <b>values</b> instead of notes, for modulating anything.
+                                        The rhythm works as usual; each pulse sends a value:
+                                    </p>
+                                    <ul class="ProductFeatures">
+                                        <li><b>Value = Velocity</b> (0&ndash;127), with locks, randomness, CV, Accent and Ramp.</li>
+                                        <li><b>Glide = Sustain</b>: 0 jumps to the new value, higher settings glide to it (100 % = across the whole gap).</li>
+                                        <li>The track's Pitch output carries the value as 0&ndash;10 V. MIDI sends it as Control Change on the track's channel, using the number set with <b>CC x10</b> and <b>CC x1</b> (0&ndash;119, default 1 = mod wheel).</li>
+                                        <li>The pitch settings and the KEYS, SCALE, PHRASE and STYLE pages don't apply.</li>
+                                    </ul>
+
+                                    <div class="BackToTop"><a href="#top">Back to top</a></div>
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ MIDI -->
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="midi">
+
+                                    <h2>MIDI Out</h2>
+
+                                    <p>
+                                        Choose a device under <i>MIDI</i> in the right-click menu. Each track sends on its own channel (SETUP page <b>MIDI CH</b>;
+                                        track <i>n</i> defaults to channel <i>n</i>, and OFF sends nothing). MIDI follows the gate outputs exactly: full chords,
+                                        transposition and velocity, and muted tracks send nothing. Stop, Reset and pattern switches end sounding notes, and
+                                        <i>Kill stuck notes</i> also sends All Notes Off on every channel.
+                                    </p>
+                                    <p>
+                                        <b>CLOCK</b> on the SETUP page sends MIDI clock (24 PPQN) with Start, Continue and Stop.
+                                    </p>
+                                    <div class="ManualNote">
+                                        MIDI is sent as Rack processes audio, so keep an <b>Audio</b> module with a device selected in any patch that sends MIDI,
+                                        even with nothing patched into it. Without one, timing can be uneven.
+                                    </div>
+
+                                    <div class="BackToTop"><a href="#top">Back to top</a></div>
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ Outputs -->
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="outputs">
+
+                                    <h2>Outputs</h2>
+
+                                    <div class="ManualTableWrap">
+                                        <table class="ManualTable">
+                                            <tr><th>Jack</th><th>What it sends</th></tr>
+                                            <tr><td>PITCH</td><td>Polyphonic, 16 channels: channel <i>n</i> = track <i>n</i>, V/Oct. A chord's lowest note; full chords come out of the OUT expander.</td></tr>
+                                            <tr><td>GATE</td><td>Polyphonic, channel <i>n</i> = track <i>n</i>. Repeats included.</td></tr>
+                                            <tr><td>VEL</td><td>Polyphonic, channel <i>n</i> = track <i>n</i>. 0&ndash;10 V (127 = 10 V), Accent and Ramp included.</td></tr>
+                                            <tr><td>EOP</td><td>Trigger at the end of each pattern loop (the longest track's period) and on each pattern switch.</td></tr>
+                                            <tr><td>CLK</td><td>Clock pulses while playing, at the PPQN set in the context menu.</td></tr>
+                                            <tr><td>RST</td><td>Trigger on each reset.</td></tr>
+                                        </table>
+                                    </div>
+                                    <p>
+                                        To use the main outputs one track at a time, split them with a polyphonic splitter (for example VCV Split).
+                                    </p>
+
+                                    <div class="BackToTop"><a href="#top">Back to top</a></div>
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ Expanders -->
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="expanders">
+
+                                    <h2>IN &amp; OUT Expanders</h2>
+
+                                    <table class="ManualPair">
+                                        <tr>
+                                            <td>
+                                                <a href="images/talea-in.png" class="ProductThumb" target="_blank" title="Click to enlarge">
+                                                    <img src="images/talea-in.png" alt="Talea IN expander panel" />
+                                                </a>
+                                                <div class="ProductThumbHint">Talea IN (left of Talea)</div>
+                                            </td>
+                                            <td>
+                                                <a href="images/talea-out.png" class="ProductThumb" target="_blank" title="Click to enlarge">
+                                                    <img src="images/talea-out.png" alt="Talea OUT expander panel" />
+                                                </a>
+                                                <div class="ProductThumbHint">Talea OUT (right of Talea)</div>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <h3>Talea OUT</h3>
+                                    <p>
+                                        Place it directly to the <b>right</b> of Talea (the green link light shows it's connected). It has a Pitch, Gate and Vel
+                                        jack for each of the 16 tracks, carrying <b>full chords</b>, one voice per channel.
+                                    </p>
+                                    <ul class="ProductFeatures">
+                                        <li>Each output has a <b>fixed number of channels</b>: <i>Polyphony (channels)</i> in the right-click menu, 1&ndash;8, default 8. The count never changes while playing, so polyphonic envelopes and VCAs downstream keep every voice.</li>
+                                        <li>Each voice has <b>its own gate</b>, and keeps its pitch and velocity after its gate falls, so release tails sound on the right note. Unused voices stay low.</li>
+                                        <li>A chord puts note 1 on channel 1, note 2 on channel 2 and so on. Keys played live (SEQ monitoring) keep their channel while held, like VCV MIDI&gt;CV.</li>
+                                        <li>MONO arpeggios use channel 1, as do CC tracks (the value, 0&ndash;10 V).</li>
+                                        <li>Each track's light: dim orange = idle, white = gate, blue-grey = muted.</li>
+                                    </ul>
+
+                                    <h3>Talea IN</h3>
+                                    <p>
+                                        Place it directly to the <b>left</b> of Talea. All of its CV inputs are polyphonic, channel <i>n</i> = track <i>n</i>; a mono
+                                        cable feeds every track.
+                                    </p>
+                                    <ul class="ProductFeatures">
+                                        <li><b>CV &rarr; PARAMETER: a CV input with an attenuverter for each knob parameter</b> (Pulses, Rotate, Repeats, Ramp, Time, Pace, Velocity, Probability, Sustain, Accent, Timing, Delay, Pitch, Voicing, Range). &plusmn;5 V &times; the attenuverter covers the parameter's full range, added on top of the knob, locks and randomness.</li>
+                                        <li><b>XPOSE</b> (transpose): V/Oct, transposes the notes (kept in the scale).</li>
+                                        <li><b>PHRASE</b>: drives the phrase of tracks whose Phrase is set to CV (&minus;5 to +5 V = bottom to top).</li>
+                                        <li><b>PATTERN</b>: 0&ndash;10 V selects pattern 1&ndash;16.</li>
+                                        <li><b>TEMP</b>: Temp is on while the gate is high.</li>
+                                        <li><b>MUTES</b>: high = muted; a patched track follows its gate at each change. <b>APPLY</b>: a trigger applies staged mutes.</li>
+                                        <li><b>REGEN</b>: a trigger rolls new random values for the track.</li>
+                                    </ul>
+
+                                    <div class="BackToTop"><a href="#top">Back to top</a></div>
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ Menu -->
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="menu">
+
+                                    <h2>Context Menu</h2>
+
+                                    <p>Right-click Talea's panel for:</p>
+                                    <ul class="ProductFeatures">
+                                        <li><b>Clock in / out PPQN</b> and <b>Run input</b> (gate or trigger).</li>
+                                        <li><b>Mute</b> timing and behaviour (finish or cut sounding notes).</li>
+                                        <li><b>Display follows knobs</b>.</li>
+                                        <li><b>MIDI</b>: output driver and device.</li>
+                                        <li><b>Kill stuck notes</b>: all gates low and All Notes Off on MIDI.</li>
+                                        <li>The selected track's sequencer mode (EUCLID / SEQ).</li>
+                                    </ul>
+                                    <p>
+                                        Several buttons have menus of their own: right-click MUTE, PATTERN, TEMP or the Harmony knob.
+                                    </p>
+
+                                    <div class="BackToTop"><a href="#top">Back to top</a></div>
+                                </td>
+                            </tr>
+
+                            <!-- ============================================================ Tips -->
+                            <tr>
+                                <td class="ProductSection ProductSectionDivided" id="tips">
+
+                                    <h2>Tips &amp; Troubleshooting</h2>
+
+                                    <ul class="ProductFeatures">
+                                        <li><b>Only one note of a chord sounds.</b> The whole voice must be polyphonic: oscillator, envelope, filter <i>and</i> VCA. A mono VCA (or mixer) in the chain plays channel 1 only. Also check that you're using the OUT expander, since the main PITCH jack carries one note per track.</li>
+                                        <li><b>Notes cut off early.</b> Use the OUT expander with its Polyphony set to the number of voices your synth runs. The channel count stays fixed so releases finish.</li>
+                                        <li><b>Nothing plays on a new track.</b> A new track has 0 pulses: turn up Pulses, or switch it to SEQ mode and enter notes.</li>
+                                        <li><b>A knob won't turn.</b> It's dimmed because it has no effect right now: in SEQ mode (Pulses, Rotate, Harmony, Voicing, Range), with steps selected (Steps, Pulses, Rotate, Division, Length can't be locked), or under Rnd Assign (Steps, Division, Length).</li>
+                                        <li><b>Uneven MIDI timing.</b> Keep an Audio module with a device selected in the patch. If another program holds an exclusive ASIO driver, don't use the same driver in Rack: use WASAPI or another device.</li>
+                                        <li><b>Stuck notes</b>: right-click Talea &rarr; <i>Kill stuck notes</i>.</li>
+                                        <li><b>Long, evolving patterns</b>: give tracks different Steps or Lengths (e.g. 16, 13 and 7 steps). They drift against each other and only line up again after a long time.</li>
+                                    </ul>
+
+                                    <div class="ProductDownload">
+                                        <a href="https://library.vcvrack.com/Talea" class="DownloadButton" target="_blank">Get Talea in the VCV Library</a>
+                                        <div class="ProductRequirements">
+                                            Free for VCV Rack 2 on Windows, macOS and Linux. Install it from Rack's Library menu.
+                                        </div>
+                                        <div class="ProductLinks">
+                                            <a href="https://github.com/Bezmont/Talea" target="_blank">Source code (GPLv3)</a>
+                                            &middot;
+                                            <a href="https://github.com/Bezmont/Talea/issues" target="_blank">Report a problem</a>
+                                            &middot;
+                                            <a href="../">More Jezric Software</a>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </table>
+
+                    </center>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div id="imageOverlay" class="ImageOverlay" title="Click to close">
+        <img id="imageOverlayImg" alt="" />
+    </div>
+
+
+    <script src="../../scripts/jquery-3.3.1.js"></script>
+
+    <script src="../../scripts/bootstrap.js"></script>
+
+    <script language="javascript">
+
+
+            $(document).ready(function () {
+                SetMainTable();
+
+                $('.ProductThumb').click(function (e) {
+                    e.preventDefault();
+                    $('#imageOverlayImg').attr('src', $(this).attr('href')).attr('alt', $(this).find('img').attr('alt'));
+                    $('#imageOverlay').fadeIn(150);
+                });
+
+                $('#imageOverlay').click(function () {
+                    $(this).fadeOut(150);
+                });
+
+                $(document).keydown(function (e) {
+                    if (e.key === 'Escape' || e.keyCode === 27) {
+                        $('#imageOverlay').fadeOut(150);
+                    }
+                });
+            });
+
+            $(window).resize(function () {
+                SetMainTable();
+            });
+
+
+            function SetMainTable()
+            {
+                if ($(window).width() >= Number(800))
+                {
+                    $(mainContentTable).width(750);
+                }
+                else
+                {
+                    $(mainContentTable).width(300);
+                }
+            }
+
+    </script>
+
+</body>
+</html>
